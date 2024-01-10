@@ -1,0 +1,12 @@
+'EXO 1
+Sub Absolu()
+'
+' Absolu Macro
+'
+
+'
+    ActiveCell.FormulaR1C1 = "1"
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = "2"
+    Range("A2").Select
+End Sub
