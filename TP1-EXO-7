@@ -1,0 +1,24 @@
+Function CalculerCirconference(diametre As Double) As Double
+    ' Cette fonction calcule la circonférence d'un cercle en utilisant la formule : diamètre * 3,14
+    CalculerCirconference = diametre * 3.14
+End Function
+Sub CalculerCirconf()
+    Dim diametre As Double
+    Dim circonference As Double
+    
+    ' Demander le diamètre à l'utilisateur
+    diametre = InputBox("Veuillez entrer le diamètre du cercle en cm:", "Calcul de la circonférence")
+    
+    ' Vérifier si l'utilisateur a annulé la boîte de dialogue
+    If diametre = 0 Then
+        ' Si l'utilisateur a annulé, afficher un message et quitter la procédure
+        MsgBox "Opération annulée.", vbInformation
+        Exit Sub
+    End If
+    
+    ' Calculer la circonférence
+    circonference = diametre * 3.14
+    
+    ' Afficher la circonférence calculée
+    MsgBox "La circonférence du cercle est (en cm) : " & circonference, vbInformation, "Résultat"
+End Sub
