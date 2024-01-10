@@ -1,0 +1,21 @@
+Sub GrasItalique()
+'
+' GrasItalique Macro
+'
+
+'
+    With Selection.Font
+        .Name = "Calibri"
+        .FontStyle = "Gras italique"
+        .Size = 11
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontMinor
+    End With
+End Sub
