@@ -1,0 +1,37 @@
+Sub SaisieDate()
+    ' Déclaration des variables
+    Dim dateSaisie As Variant
+    
+    ' Boucle tant que la frappe n'est pas reconnue comme une date
+    Do
+        ' Demander à l'utilisateur de taper une date avec spécification du format
+        dateSaisie = InputBox("Entrez une date (format : JJ/MM/AAAA):", "Saisie de Date", Format(Date, "dd/mm/yyyy"))
+        
+        ' Vérifier si l'utilisateur a annulé la boîte de dialogue
+        If dateSaisie = "" Then
+            MsgBox "Opération annulée.", vbInformation, "Résultat"
+            Exit Sub
+        End If
+        
+        ' Valider la date saisie
+        If Not IsDate(dateSaisie) Then
+            MsgBox "La date saisie n'est pas valide. Veuillez respecter le format indiqué.", vbExclamation, "Avertissement"
+        End If
+    Loop While Not IsDate(dateSaisie)
+    
+    ' Afficher la date finale
+    MsgBox "La date saisie est : " & Format(CDate(dateSaisie), "Long Date"), vbInformation, "Résultat"
+End Sub
+Sub RemplirFeuilleCharleroi()
+    ' Rendre la feuille 'Charleroi' active
+    Sheets("Charleroi").Activate
+    
+    ' Boucler de la ligne 5 à la ligne 1000 de la colonne E
+    For I = 5 To 1000
+        ' Sélectionner la cellule E de la ligne actuelle
+        Range("E" & I).Select
+        
+        ' Inscrire le texte dans la cellule sélectionnée
+        ActiveCell.Value = "Je suis dans la cellule " & (I - 4) & " de la colonne E"
+    Next I
+End Sub
