@@ -1,0 +1,13 @@
+Sub ManipulerCelluleActive()
+    ' 1) Mettre la valeur "Hello World" dans la cellule active
+    ActiveCell.Value = "Hello World"
+    
+    ' 2) Afficher dans une boîte de message le contenu de la cellule active
+    MsgBox "Contenu de la cellule active : " & ActiveCell.Value, vbInformation, "Étape 2"
+    
+    ' 3) Effacer le contenu de la cellule active
+    ActiveCell.ClearContents
+    
+    ' 4) Pour vérifier, afficher de nouveau dans une boîte de message le contenu de la cellule active
+    MsgBox "Contenu de la cellule active après effacement : " & ActiveCell.Value, vbInformation, "Étape 4"
+End Sub
