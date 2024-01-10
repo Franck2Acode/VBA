@@ -1,0 +1,29 @@
+Function VerifierCelluleA1() As Integer
+    ' Vérifier si la cellule A1 est vide
+    If IsEmpty(ActiveSheet.Range("A1").Value) Then
+        ' La cellule A1 est vide, renvoyer la valeur 1
+        VerifierCelluleA1 = 1
+    Else
+        ' La cellule A1 n'est pas vide, renvoyer la valeur 2
+        VerifierCelluleA1 = 2
+    End If
+End Function
+Sub UtiliserVerificationCelluleA1Bis()
+    Dim resultat As Integer
+    ' Appeler la fonction pour vérifier la cellule A1
+    resultat = VerifierCelluleA1
+    
+    ' Afficher le résultat dans une boîte de message
+    MsgBox "Pas de titre"
+    
+    ' Si le résultat est égal à 1, appeler la fonction BeepNow
+    If resultat = 1 Then
+        BeepNowbis
+    End If
+End Sub
+Sub BeepNowbis()
+    ' Émettre un bip
+    Beep
+    message = "LE BIP FAIT DU BIP"
+    Application.Speech.Speak message
+End Sub
