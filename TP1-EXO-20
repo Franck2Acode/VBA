@@ -1,0 +1,93 @@
+Function TotalAPlayer(quantite As Integer, prixHT As Double, port As Double) As Double
+    ' Déclaration des variables
+    Dim remise As Double
+    Dim totalSansRemise As Double
+    Dim totalAvecRemise As Double
+    
+    ' Vérifier la quantité pour appliquer la remise appropriée
+    Select Case quantite
+        Case 1
+            remise = 0
+        Case 2 To 10
+            remise = 0.01
+        Case 11 To 20
+            remise = 0.05
+        Case 21 To 30
+            remise = 0.1
+        Case 31 To 40
+            remise = 0.15
+        Case 41 To 50
+            remise = 0.2
+        Case Is > 50
+            ' Afficher une erreur si la quantité est supérieure à 50
+            MsgBox "Erreur dans la quantité. La commande ne peut pas dépasser 50 pièces.", vbCritical, "Erreur"
+            Exit Function
+        Case Else
+            ' Afficher une erreur si la quantité est invalide
+            MsgBox "Erreur dans la quantité. Veuillez entrer une quantité valide.", vbCritical, "Erreur"
+            Exit Function
+    End Select
+    
+    ' Calculer le total sans remise
+    totalSansRemise = quantite * prixHT + port
+    
+    ' Calculer le total avec remise
+    totalAvecRemise = totalSansRemise * (1 - remise)
+
+    ' Afficher les étapes du calcul
+    MsgBox "Quantité : " & quantite & vbCrLf & _
+           "Prix Hors Taxe : " & prixHT & vbCrLf & _
+           "Port : " & port & vbCrLf & _
+           "Total sans remise : " & totalSansRemise & vbCrLf & _
+           "Remise appliquée : " & FormatPercent(remise, 0) & vbCrLf & _
+           "Total à Payer : " & totalAvecRemise, vbInformation, "Détails du Calcul"
+    
+    ' Retourner le total avec remise
+    TotalAPlayer = totalAvecRemise
+End Function
+Sub AppelerTotalAPlayerAvecDialogue()
+    ' Déclarer les variables
+    Dim quantite As Integer
+    Dim prixHT As Double
+    Dim port As Double
+    
+    ' Demander à l'utilisateur d'entrer la quantité
+    On Error Resume Next
+    quantite = InputBox("Entrez la quantité commandée:")
+    On Error GoTo 0
+    
+    ' Vérifier si l'utilisateur a annulé la boîte de dialogue ou entré une valeur invalide
+    If quantite <= 0 Then
+        MsgBox "Opération annulée ou valeur de quantité invalide.", vbExclamation, "Avertissement"
+        Exit Sub
+    End If
+    
+    ' Demander à l'utilisateur d'entrer le prix hors taxe
+    On Error Resume Next
+    prixHT = InputBox("Entrez le prix hors taxe par pièce:")
+    On Error GoTo 0
+    
+    ' Vérifier si l'utilisateur a annulé la boîte de dialogue ou entré une valeur invalide
+    If prixHT <= 0 Then
+        MsgBox "Opération annulée ou valeur de prix hors taxe invalide.", vbExclamation, "Avertissement"
+        Exit Sub
+    End If
+    
+    ' Demander à l'utilisateur d'entrer les frais de port
+    On Error Resume Next
+    port = InputBox("Entrez les frais de port:")
+    On Error GoTo 0
+    
+    ' Vérifier si l'utilisateur a annulé la boîte de dialogue ou entré une valeur invalide
+    If port < 0 Then
+        MsgBox "Opération annulée ou valeur de frais de port invalide.", vbExclamation, "Avertissement"
+        Exit Sub
+    End If
+    
+    ' Appeler la fonction TotalAPlayer avec les valeurs de l'utilisateur
+    Dim resultatTotal As Double
+    resultatTotal = TotalAPlayer(quantite, prixHT, port)
+    
+    ' Afficher le résultat dans une boîte de message
+    MsgBox "Le Total à Payer est : " & resultatTotal, vbInformation, "Résultat"
+End Sub
