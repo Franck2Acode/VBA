@@ -1,0 +1,11 @@
+Sub MettreEnFormeCelluleA1()
+    ' Vérifier si la cellule A1 n'est pas vide
+    If Not IsEmpty(ActiveSheet.Range("A1").Value) Then
+        ' Mettre en forme la cellule A1
+        With ActiveSheet.Range("A1").Font
+            .Bold = True       ' Mettre en gras
+            .Underline = True  ' Souligner
+            .Color = RGB(255, 0, 0)  ' Rouge
+        End With
+    End If
+End Sub
