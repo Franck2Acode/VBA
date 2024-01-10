@@ -1,0 +1,21 @@
+Sub CalculEtAffichage()
+    Dim nombre As Double
+    Static entreePrecedente As Double ' Utilisation du mot-clé Static pour conserver la valeur entre les appels
+    
+    ' Demander à l'utilisateur de taper un nombre entre 1 et 10
+    On Error Resume Next ' Ignorer les erreurs si l'utilisateur annule la boîte de dialogue
+    nombre = InputBox("Veuillez taper un nombre entre 1 et 10 :", "Entrée de l'utilisateur")
+    On Error GoTo 0 ' Rétablir la gestion normale des erreurs
+    
+    ' Vérifier si l'utilisateur a annulé la boîte de dialogue ou a saisi un nombre invalide
+    If nombre >= 1 And nombre <= 10 Then
+        ' Afficher une boîte de dialogue avec le nombre tapé augmenté de l'entrée précédente
+        MsgBox "Le nombre tapé augmenté de l'entrée précédente est : " & (nombre + entreePrecedente), vbInformation, "Résultat"
+        
+        ' Mettre à jour l'entrée précédente avec le nombre actuel
+        entreePrecedente = nombre
+    ElseIf nombre <> 0 Then
+        ' Afficher un message d'erreur si la saisie est invalide
+        MsgBox "Veuillez saisir un nombre valide entre 1 et 10.", vbExclamation, "Erreur de saisie"
+    End If
+End Sub
