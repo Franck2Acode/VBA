@@ -1,0 +1,10 @@
+Sub ColorierCellulesEnFonctionDeA1()
+    ' Récupérer la couleur intérieure de la cellule A1
+    Dim couleurA1 As Long
+    couleurA1 = ActiveSheet.Range("A1").Interior.Color
+    
+    ' Appliquer la couleur à toutes les cellules de la feuille active
+    With ActiveSheet.Cells
+        .Interior.Color = couleurA1
+    End With
+End Sub
