@@ -1,0 +1,5 @@
+Function CalculerCirconferencePI2(diametre As Double) As Double
+    ' Cette fonction calcule la circonférence d'un cercle en utilisant la constante PI : diamètre * PI
+    Const PI As Double = 3.14159226
+    CalculerCirconferencePI2 = diametre * PI
+End Function
