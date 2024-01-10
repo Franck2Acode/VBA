@@ -1,0 +1,23 @@
+Sub DemanderValeurUtilisateur()
+    ' Déclaration des variables
+    Dim valeurUtilisateur As Variant
+    Dim message As String
+    
+    ' Afficher une boîte de dialogue InputBox avec les spécifications demandées
+    valeurUtilisateur = Application.InputBox("Tape une valeur entre 1 et 100", "Entrée utilisateur", , , , , , 1)
+    
+    ' Vérifier si l'utilisateur a appuyé sur Annuler ou a laissé la boîte de dialogue vide
+    If valeurUtilisateur = "" Or valeurUtilisateur = False Then
+        message = "Aucune valeur n'a été saisie. Opération annulée."
+    Else
+        ' Vérifier si la valeur est comprise entre 1 et 100
+        If valeurUtilisateur >= 1 And valeurUtilisateur <= 100 Then
+            message = "La valeur saisie est valide : " & valeurUtilisateur
+        Else
+            message = "La valeur saisie n'est pas comprise entre 1 et 100. Opération annulée."
+        End If
+    End If
+    
+    ' Afficher le message résultant
+    MsgBox message, vbInformation, "Résultat"
+End Sub
