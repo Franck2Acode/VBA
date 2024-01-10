@@ -1,0 +1,10 @@
+Sub AfficherValeurCelluleActive()
+    ' Vérifier si une cellule est active
+    If Not IsEmpty(ActiveCell.Value) Then
+        ' Afficher la valeur de la cellule active dans une boîte de message
+        MsgBox "La valeur de la cellule active est : " & ActiveCell.Value, vbInformation, "Valeur de la cellule active"
+    Else
+        ' Si la cellule est vide, afficher un message d'information
+        MsgBox "La cellule active est vide.", vbInformation, "Cellule active vide"
+    End If
+End Sub
