@@ -1,0 +1,13 @@
+Sub RemplirFeuilleCharleroi()
+    ' Rendre la feuille 'Charleroi' active
+    Sheets("Charleroi").Activate
+    
+    ' Boucler de la ligne 5 à la ligne 1000 de la colonne E
+    For I = 5 To 1000
+        ' Sélectionner la cellule E de la ligne actuelle
+        Range("E" & I).Select
+        
+        ' Inscrire le texte dans la cellule sélectionnée
+        ActiveCell.Value = "Je suis dans la cellule " & (I - 4) & " de la colonne E"
+    Next I
+End Sub
