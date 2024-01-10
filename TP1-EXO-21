@@ -1,0 +1,39 @@
+Sub SaisieNombreJusquA1000()
+    ' Déclaration des variables
+    Dim somme As Integer
+    Dim nombre As Variant
+    
+    ' Initialiser la somme à zéro
+    somme = 0
+    
+    ' Boucle tant que la somme est inférieure à 1000
+    Do While somme < 1000
+        ' Demander à l'utilisateur de taper un nombre avec affichage de la somme actuelle
+        nombre = InputBox("Entrez un nombre de trois chiffres maximum." & vbCrLf & _
+                           "Somme actuelle : " & somme, "Saisie Nombre", somme)
+        
+        ' Vérifier si l'utilisateur a annulé la boîte de dialogue
+        If nombre = "" Then
+            MsgBox "Opération annulée. La somme actuelle est : " & somme, vbInformation, "Résultat"
+            Exit Sub
+        End If
+        
+        ' Convertir le nombre saisi en entier
+        On Error Resume Next
+        Dim nombreEntier As Integer
+        nombreEntier = CInt(nombre)
+        On Error GoTo 0
+        
+        ' Vérifier si la conversion a réussi et si le nombre est valide
+        If Err.Number <> 0 Or nombreEntier <= 0 Or nombreEntier >= 1000 Then
+            MsgBox "Veuillez entrer un nombre de trois chiffres maximum valide.", vbExclamation, "Avertissement"
+            Err.Clear
+        Else
+            ' Ajouter le nombre à la somme
+            somme = somme + nombreEntier
+        End If
+    Loop
+    
+    ' Afficher la somme finale
+    MsgBox "La somme des nombres saisis est : " & somme, vbInformation, "Résultat"
+End Sub
