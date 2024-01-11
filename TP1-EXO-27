@@ -1,9 +1,30 @@
-Sub AfficherBoitesDialogues()
+Sub AfficherBoitesDialoguesAvecTri()
     ' Afficher le nombre de boîtes de dialogue intégrées
     MsgBox "Nombre de boîtes de dialogue intégrées : " & Application.Dialogs.Count, vbInformation, "Information"
     
-    ' Afficher la boîte de dialogue du tri
-    On Error Resume Next ' Ignorer les erreurs pour continuer l'exécution
-    Application.Dialogs(xlDialogSort).Show
-    On Error GoTo 0 ' Revenir à la gestion normale des erreurs
+    ' Déclaration des variables pour le tri
+    Dim plageTri As Range
+    Dim confirmTri As Boolean
+    
+    ' Sélectionner la plage à trier (par exemple, la colonne A de la feuille active)
+    On Error Resume Next
+    Set plageTri = Application.InputBox("Sélectionnez la plage à trier :", Type:=8)
+    On Error GoTo 0
+    
+    ' Vérifier si l'utilisateur a annulé la sélection
+    If plageTri Is Nothing Then
+        MsgBox "Opération annulée.", vbInformation, "Résultat"
+        Exit Sub
+    End If
+    
+    ' Demander confirmation à l'utilisateur pour le tri
+    confirmTri = MsgBox("Voulez-vous trier la plage sélectionnée ?", vbYesNo + vbQuestion, "Confirmation de tri") = vbYes
+    
+    ' Effectuer le tri si l'utilisateur a confirmé
+    If confirmTri Then
+        plageTri.Sort Key1:=plageTri, Order1:=xlAscending, Header:=xlYes
+        MsgBox "Tri effectué avec succès.", vbInformation, "Résultat"
+    Else
+        MsgBox "Tri annulé par l'utilisateur.", vbInformation, "Résultat"
+    End If
 End Sub
