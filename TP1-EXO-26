@@ -1,1 +1,34 @@
-
+Sub GestionErreursEtFeuilles()
+    ' Désactiver l'affichage des messages d'alerte
+    Application.DisplayAlerts = False
+    
+    ' Déclaration des variables
+    Dim mois As Variant
+    Dim i As Integer
+    
+    ' Liste des noms de mois
+    mois = Array("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre")
+    
+    On Error Resume Next ' Ignorer les erreurs pour continuer l'exécution
+    
+    ' Supprimer toutes les feuilles existantes
+    For i = Sheets.Count To 1 Step -1
+        Sheets(i).Delete
+    Next i
+    
+    ' Gérer les erreurs
+    If Err.Number <> 0 Then
+        MsgBox "Erreur numéro : " & Err.Number & vbCrLf & "Description de l'erreur : " & Err.Description, vbExclamation, "Erreur"
+        Err.Clear
+    End If
+    
+    On Error GoTo 0 ' Revenir à la gestion normale des erreurs
+    
+    ' Ajouter 12 nouvelles feuilles et les nommer
+    For i = 1 To 12
+        Sheets.Add(After:=Sheets(Sheets.Count)).Name = mois(i - 1)
+    Next i
+    
+    ' Activer l'affichage des messages d'alerte
+    Application.DisplayAlerts = True
+End Sub
