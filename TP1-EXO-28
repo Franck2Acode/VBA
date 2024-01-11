@@ -1,1 +1,34 @@
-
+Sub SelectionnerFichiersExcel()
+    ' Déclaration des variables
+    Dim dlg As FileDialog
+    Dim fichier As Variant
+    Dim fichiersSelectionnes As String
+    
+    ' Créer une boîte de dialogue pour la sélection de fichiers
+    Set dlg = Application.FileDialog(msoFileDialogOpen)
+    
+    ' Spécifier le type de fichier (Excel)
+    dlg.Filters.Clear
+    dlg.Filters.Add "Fichiers Excel", "*.xls; *.xlsx", 1
+    
+    ' Titre de la boîte de dialogue
+    dlg.Title = "Sélectionne un fichier"
+    
+    ' Autoriser la sélection multiple
+    dlg.AllowMultiSelect = True
+    
+    ' Afficher la boîte de dialogue et traiter le résultat
+    If dlg.Show = -1 Then ' -1 correspond à l'action OK
+        ' Boucler à travers les fichiers sélectionnés
+        For Each fichier In dlg.SelectedItems
+            ' Ajouter le nom et le chemin du fichier à la chaîne
+            fichiersSelectionnes = fichiersSelectionnes & fichier & vbCrLf
+        Next fichier
+        
+        ' Afficher le nom et le chemin des fichiers sélectionnés dans une boîte de message
+        MsgBox "Fichiers sélectionnés :" & vbCrLf & fichiersSelectionnes, vbInformation, "Résultat"
+    Else
+        ' Message si l'utilisateur a annulé la boîte de dialogue
+        MsgBox "Opération annulée par l'utilisateur.", vbInformation, "Résultat"
+    End If
+End Sub
