@@ -1,1 +1,39 @@
+Sub OuvrirFichierExcel()
+    ' Déclaration des variables
+    Dim dlg As FileDialog
+    Dim fichier As Variant
+    Dim classeur As Workbook
+    
+    ' Créer une boîte de dialogue pour ouvrir un fichier
+    Set dlg = Application.FileDialog(msoFileDialogOpen)
+    
+    ' Spécifier le type de fichier (Excel)
+    dlg.Filters.Clear
+    dlg.Filters.Add "Fichiers Excel", "*.xls; *.xlsx", 1
+    
+    ' Titre de la boîte de dialogue
+    dlg.Title = "Ouvrir fichier"
+    
+    ' Autoriser la sélection d'un seul fichier
+    dlg.AllowMultiSelect = False
+    
+    ' Afficher la boîte de dialogue et traiter le résultat
+    If dlg.Show = -1 Then ' -1 correspond à l'action OK
+        ' Récupérer le chemin du fichier sélectionné
+        fichier = dlg.SelectedItems(1)
+        
+        ' Ouvrir le fichier Excel
+        Set classeur = Workbooks.Open(fichier)
+    Else
+        ' Message si l'utilisateur a annulé la boîte de dialogue
+        MsgBox "Opération annulée par l'utilisateur.", vbInformation, "Résultat"
+        Exit Sub
+    End If
+    
+    ' (Optionnel) Faire des opérations supplémentaires sur le classeur ouvert
+    ' ...
+    
+    ' (Optionnel) Afficher un message indiquant que le fichier est ouvert
+    MsgBox "Le fichier est maintenant ouvert : " & vbCrLf & fichier, vbInformation, "Résultat"
+End Sub
 
