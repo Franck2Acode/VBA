@@ -1,1 +1,27 @@
+Sub EnregistrerFichierExcel()
+    ' Déclaration des variables
+    Dim dlg As FileDialog
+    Dim cheminFichier As Variant
+    
+    ' Créer une boîte de dialogue pour enregistrer le fichier
+    Set dlg = Application.FileDialog(msoFileDialogSaveAs)
+    
+    ' Titre de la boîte de dialogue
+    dlg.Title = "Enregistrer le fichier sous"
+    
+    ' Afficher la boîte de dialogue et traiter le résultat
+    If dlg.Show = -1 Then ' -1 correspond à l'action OK
+        ' Récupérer le chemin du fichier spécifié par l'utilisateur
+        cheminFichier = dlg.SelectedItems(1)
+        
+        ' Enregistrer le fichier Excel sous le nouveau nom et emplacement
+        ThisWorkbook.SaveAs cheminFichier
+        
+        ' Afficher un message indiquant que le fichier a été enregistré
+        MsgBox "Le fichier a été enregistré avec succès à l'emplacement :" & vbCrLf & cheminFichier, vbInformation, "Résultat"
+    Else
+        ' Message si l'utilisateur a annulé la boîte de dialogue
+        MsgBox "Opération annulée par l'utilisateur.", vbInformation, "Résultat"
+    End If
+End Sub
 
