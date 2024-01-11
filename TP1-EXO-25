@@ -1,1 +1,21 @@
+Sub RenommerFeuillesEnNumeros()
+    ' Déclaration des variables
+    Dim ws As Worksheet
+    Dim i As Integer
+    
+    ' Désactiver les mises à jour pour améliorer la performance
+    Application.ScreenUpdating = False
+    
+    ' Boucler à travers toutes les feuilles du classeur actif
+    For i = 1 To Sheets.Count
+        ' Référencer la feuille en cours
+        Set ws = Sheets(i)
+        
+        ' Renommer la feuille avec le numéro actuel
+        ws.Name = i
+    Next i
+    
+    ' Activer les mises à jour après avoir terminé la boucle
+    Application.ScreenUpdating = True
+End Sub
 
