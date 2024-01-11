@@ -1,1 +1,9 @@
-
+Sub AfficherBoitesDialogues()
+    ' Afficher le nombre de boîtes de dialogue intégrées
+    MsgBox "Nombre de boîtes de dialogue intégrées : " & Application.Dialogs.Count, vbInformation, "Information"
+    
+    ' Afficher la boîte de dialogue du tri
+    On Error Resume Next ' Ignorer les erreurs pour continuer l'exécution
+    Application.Dialogs(xlDialogSort).Show
+    On Error GoTo 0 ' Revenir à la gestion normale des erreurs
+End Sub
