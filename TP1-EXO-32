@@ -1,1 +1,30 @@
+Sub EffacerColonnes()
+    ' Déclaration des variables
+    Dim plageSelectionnee As Range
+    Dim confirmation As VbMsgBoxResult
+    
+    ' Demander à l'utilisateur de sélectionner les colonnes
+    On Error Resume Next
+    Set plageSelectionnee = Application.InputBox("Sélectionnez la(les) colonne(s) à effacer :", Type:=8)
+    On Error GoTo 0
+    
+    ' Vérifier si l'utilisateur a annulé la sélection
+    If plageSelectionnee Is Nothing Then
+        MsgBox "Opération annulée par l'utilisateur.", vbInformation, "Résultat"
+        Exit Sub
+    End If
+    
+    ' Afficher une boîte de dialogue avec les boutons "Oui" et "Non", et le focus sur "Oui"
+    confirmation = MsgBox("Voulez-vous vraiment effacer la(les) colonne(s) sélectionnée(s) ?", vbExclamation + vbYesNo, "Confirmation")
+    
+    ' Traiter la réponse de l'utilisateur
+    If confirmation = vbYes Then
+        ' Effacer les colonnes sélectionnées
+        plageSelectionnee.EntireColumn.Delete
+        MsgBox "Colonnes effacées avec succès.", vbInformation, "Résultat"
+    Else
+        MsgBox "Opération annulée par l'utilisateur.", vbInformation, "Résultat"
+    End If
+End Sub
+
 
